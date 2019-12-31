@@ -11,14 +11,27 @@
 
 <body>
 
+	<h3>A demonstration of how to access a File Upload Button</h3>
+
+	<form id="fileForm">
+		<input type="file" id="myFile">
+		<input type="button" onclick="logFile(document.getElementById('myFile').value);">
+	</form>
+
 	<script type="text/javascript">
 		
 		console.log("hello world!");
 		hello("mathew");
 
-		d3.csv("./soup.csv").then(function(data){
-			console.log(data);
-		});
+		
+
+		function logFile(arg){
+			console.log("this is the file");
+			console.log(arg)
+			d3.csv(arg).then(function(data){
+				console.log(data);
+			});
+		}
 
 	</script>
 
