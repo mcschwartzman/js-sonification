@@ -14,7 +14,7 @@
 	<h3>A demonstration of how to access a File Upload Button</h3>
 
 	<form id="fileForm">
-		<input type="file" id="myFile">
+		<input type="file" id="myFile" onchange="loadFile()">
 		<input type="button" onclick="logFile(document.getElementById('myFile').value);">
 	</form>
 
@@ -25,13 +25,24 @@
 
 		
 
-		function logFile(arg){
-			console.log("this is the file");
-			console.log(arg)
-			d3.csv(arg).then(function(data){
-				console.log(data);
-			});
-		}
+		var reader = new FileReader();  
+    
+	    function loadFile() {      
+	      var file = document.querySelector('input[type=file]').files[0];      
+	      reader.addEventListener("load", parseFile, false);
+	      if (file) {
+	        reader.readAsText(file);
+	      }      
+	    }
+	    
+	    function parseFile(){
+	      var doesColumnExist = false;
+	      var data = d3.csv.parse(reader.result, function(d){
+	        doesColumnExist = d.hasOwnProperty("aisle");
+	        return d;   
+	      });
+	      console.log(doesColumnExist);
+	    }
 
 	</script>
 
