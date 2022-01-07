@@ -40,7 +40,7 @@
 	      var doesColumnExist = false;
 	      var data = d3.csv.parse(reader.result, function(d){
 	        doesColumnExist = d.hasOwnProperty("aisle");
-	        return d;   
+	        return d;
 	      });
 	      console.log(doesColumnExist);
 	      console.log(data);
